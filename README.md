@@ -28,6 +28,7 @@ Mini-CyberChef/<br>
 │<br>
 │── README.md<br>
 │── requirements.txt<br>
+│<br>
 │── docs/<br>
 │   └── Savon_Chanserey_G2_Report.pdf<br>
 │   └── Savon_Chanserey_G2_Report.docx<br>
@@ -42,7 +43,7 @@ Mini-CyberChef/<br>
    <br>
    Note: In requirements.txt include pyperclip (clipboard copy support), Pillow (GUI images/icons support)
 
-3. Run the application
+3. Run the application:
    python3 gui/app.py
 
 
