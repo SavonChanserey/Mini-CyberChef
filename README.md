@@ -6,9 +6,9 @@ Mini-CyberChef is a python cryptography tool that got inspired from cyberchef fo
 # Project Structure
 
 
-Mini-CyberChef/
+Mini-CyberChef/<br>
 │── gui/<br>
-│   ├── __init__.py
+│   ├── __init__.py<br>
 │   └── app.py<br>                   # Main GUI
 │<br>
 │── operations/<br>
@@ -28,10 +28,10 @@ Mini-CyberChef/
 │   ├── rot47.py<br>
 │   ├── vigenere.py<br>
 │   └── xor.py<br>
-│
+│<br>
 │── README.md<br>
 │── requirements.txt<br>
-│
+│<br>
 │── docs/<br>
 │   ├── Savon_Chanserey_G2_Report.pdf<br>
 │   └── Savon_Chanserey_G2_Report.docx
