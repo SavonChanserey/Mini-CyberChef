@@ -7,9 +7,11 @@ Mini-CyberChef is a python cryptography tool that got inspired from cyberchef fo
 
 Mini-CyberChef/<br>
 │── gui/<br>
+│   └── __init__.py
 │   └── app.py                 # Main GUI<br>
 │<br>
 │── operations/<br>
+│   └── __init__.py<br>
 │   ├── bacon.py<br>
 │   ├── base32.py<br>
 │   ├── base45.py<br>
