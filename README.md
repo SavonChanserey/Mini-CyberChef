@@ -19,11 +19,11 @@ Mini-CyberChef/<br>
 │   ├── base85.py<br>
 │   ├── base92.py<br>
 │   ├── binary.py<br>
-│   ├── hexadecimal.py<br>          
-│   ├── magic.py<br>          
+│   ├── hexadecimal.py          
+│   ├── magic.py          
 │   ├── rot13.py<br> 
-│   ├── rot47.py<br>   
-│   ├── vigenere.py<br>    
+│   ├── rot47.py   
+│   ├── vigenere.py    
 │   └── xor.py<br>       
 │<br>
 │── README.md<br>
