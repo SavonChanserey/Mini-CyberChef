@@ -24,7 +24,7 @@ Mini-CyberChef/<br>
 │   ├── rot13.py<br> 
 │   ├── rot47.py   
 │   ├── vigenere.py    
-│   └── xor.py<br>       
+│   └── xor.py       
 │<br>
 │── README.md<br>
 │── requirements.txt<br>
