@@ -5,35 +5,37 @@ Mini-CyberChef is a python cryptography tool that got inspired from cyberchef fo
 
 # Project Structure
 
-Mini-CyberChef/<br>
-│── gui/<br>
-│   └──  __init__.py<br>
-│   └── app.py                 # Main GUI<br>
-│<br>
-│── operations/<br>
-│   └──  __init__.py<br>
-│   ├── bacon.py<br>
-│   ├── base32.py<br>
-│   ├── base45.py<br>
-│   ├── base58.py<br>
-│   ├── base62.py<br>
-│   ├── base64.py<br>
-│   ├── base85.py<br>
-│   ├── base92.py<br>
-│   ├── binary.py<br>
-│   ├── hexadecimal.py          
-│   ├── magic.py          
-│   ├── rot13.py<br> 
-│   ├── rot47.py   
-│   ├── vigenere.py    
-│   └── xor.py       
-│<br>
-│── README.md<br>
-│── requirements.txt<br>
-│<br>
-│── docs/<br>
-│   └── Savon_Chanserey_G2_Report.pdf<br>
-│   └── Savon_Chanserey_G2_Report.docx<br>
+
+Mini-CyberChef/
+│── gui/
+│   ├── __init__.py
+│   └── app.py                   # Main GUI
+│
+│── operations/
+│   ├── __init__.py
+│   ├── bacon.py
+│   ├── base32.py
+│   ├── base45.py
+│   ├── base58.py
+│   ├── base62.py
+│   ├── base64.py
+│   ├── base85.py
+│   ├── base92.py
+│   ├── binary.py
+│   ├── hexadecimal.py
+│   ├── magic.py
+│   ├── rot13.py
+│   ├── rot47.py
+│   ├── vigenere.py
+│   └── xor.py
+│
+│── README.md
+│── requirements.txt
+│
+│── docs/
+│   ├── Savon_Chanserey_G2_Report.pdf
+│   └── Savon_Chanserey_G2_Report.docx
+
 
 # Installation/setup instructions
 
