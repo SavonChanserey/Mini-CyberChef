@@ -5,32 +5,32 @@ Mini-CyberChef is a python cryptography tool that got inspired from cyberchef fo
 
 # Project Structure
 
-Mini-CyberChef/
-│── gui/
-│   └── app.py                 # Main GUI
-│
-│── operations/
-│   ├── bacon.py
-│   ├── base32.py
-│   ├── base45.py
-│   ├── base58.py
-│   ├── base62.py
-│   ├── base64.py
-│   ├── base85.py
-│   ├── base92.py
-│   ├── binary.py
-│   ├── hexadecimal.py          
-│   ├── magic.py          
-│   ├── rot13.py 
-│   ├── rot47.py   
-│   ├── vigenere.py    
-│   └── xor.py       
-│
-│── README.md
-│── requirements.txt
-│── docs/
-│   └── Savon_Chanserey_G2_Report.pdf
-│   └── Savon_Chanserey_G2_Report.docx
+Mini-CyberChef/<br>
+│── gui/<br>
+│   └── app.py                 # Main GUI<br>
+│<br>
+│── operations/<br>
+│   ├── bacon.py<br>
+│   ├── base32.py<br>
+│   ├── base45.py<br>
+│   ├── base58.py<br>
+│   ├── base62.py<br>
+│   ├── base64.py<br>
+│   ├── base85.py<br>
+│   ├── base92.py<br>
+│   ├── binary.py<br>
+│   ├── hexadecimal.py<br>          
+│   ├── magic.py<br>          
+│   ├── rot13.py<br> 
+│   ├── rot47.py<br>   
+│   ├── vigenere.py<br>    
+│   └── xor.py<br>       
+│<br>
+│── README.md<br>
+│── requirements.txt<br>
+│── docs/<br>
+│   └── Savon_Chanserey_G2_Report.pdf<br>
+│   └── Savon_Chanserey_G2_Report.docx<br>
 
 # Installation/setup instructions
 
@@ -39,6 +39,7 @@ Mini-CyberChef/
 
 2. Install dependencies:
    pip install -r requirements.txt<br>
+   <br>
    Note: In requirements.txt include pyperclip (clipboard copy support), Pillow (GUI images/icons support)
 
 3. Run the application
