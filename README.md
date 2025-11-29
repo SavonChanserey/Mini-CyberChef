@@ -1,10 +1,9 @@
 # Project Title: Mini-CyberChef
 
 # Description
-Mini-CyberChef is a python cryptography tool that got inspired from cyberchef for encoding and decoding text. Users can use specific operation such as base64, hex, xor and more or use the magic function that automatic analyze the ciphertext related to. 
+Mini-CyberChef is a python cryptography tool that got inspired from cyberchef, and that is a lightweight and user-friendly tool that is easy to learn because the tool is simplified. The application has a graphical interface (GUI) that allows the users to encode, decode, and analyze the text without writing any type of code. It also has a magic feature which attempts to automatically find common encodings and tries to decode them.
 
 # Project Structure
-
 
 Mini-CyberChef/<br>
 │── gui/<br>
