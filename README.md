@@ -6,6 +6,7 @@ Mini-CyberChef is a python cryptography tool that got inspired from cyberchef, a
 # Project Structure
 
 Mini-CyberChef/<br>
+│<br>
 │── main.py<br>
 │<br>
 │── gui/<br>
