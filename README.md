@@ -6,26 +6,37 @@ Mini-CyberChef is a python cryptography tool that got inspired from cyberchef, a
 # Project Structure
 
 Mini-CyberChef/<br>
+│── main.py<br>
+│<br>
 │── gui/<br>
-│   ├── __init__.py<br>
 │   └── app.py                   # Main GUI<br>
 │<br>
 │── operations/<br>
-│   ├── __init__.py<br>
-│   ├── bacon.py<br>
-│   ├── base32.py<br>
-│   ├── base45.py<br>
-│   ├── base58.py<br>
-│   ├── base62.py<br>
-│   ├── base64.py<br>
-│   ├── base85.py<br>
-│   ├── base92.py<br>
-│   ├── binary.py<br>
-│   ├── hexadecimal.py<br>
+│   ├── bacon_decode.py<br>
+│   ├── bacon_encode.py<br>
+│   ├── base32_decode.py<br>
+│   ├── base32_encode.py<br>
+│   ├── base45_decode.py<br>
+│   ├── base45_encode.py<br>
+│   ├── base58_decode.py<br>
+│   ├── base58_encode.py<br>
+│   ├── base62_decode.py<br>
+│   ├── base62_encode.py<br>
+│   ├── base64_decode.py<br>
+│   ├── base64_encode.py<br>
+│   ├── base85_decode.py<br>
+│   ├── base85_encode.py<br>
+│   ├── base92_decode.py<br>
+│   ├── base92_encode.py<br>
+│   ├── binary_decode.py<br>
+│   ├── binary_encode.py<br>
+│   ├── hexadecimal_decode.py<br>
+│   ├── hexadecimal_encode.py<br>
 │   ├── magic.py<br>
 │   ├── rot13.py<br>
 │   ├── rot47.py<br>
-│   ├── vigenere.py<br>
+│   ├── vigenere_decode.py<br>
+│   ├── vigenere_encode.py<br>
 │   └── xor.py<br>
 │<br>
 │── README.md<br>
@@ -47,7 +58,7 @@ Mini-CyberChef/<br>
    Note: In requirements.txt include pyperclip (clipboard copy support), Pillow (GUI images/icons support)
 
 3. Run the application:
-   python3 gui/app.py
+   python3 main.py
 
 
 
