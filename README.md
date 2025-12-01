@@ -10,7 +10,7 @@ Mini-CyberChef/<br>
 │── main.py<br>
 │<br>
 │── gui/<br>
-│   └── app.py                   # Main GUI<br>
+│   └── app.py                   
 │<br>
 │── operations/<br>
 │   ├── bacon_decode.py<br>
