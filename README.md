@@ -52,20 +52,48 @@ Mini-CyberChef/<br>
 
 1. Clone the Repository:
    git clone https://github.com/SavonChanserey/Mini-CyberChef.git
+   cd path/to/Mini-CyberChef<br>
 
-2. Install dependencies:
+2. Create a Virtual Environment
+   python3 -m venv venv<br>
+
+3. Activate the Virtual Environment
+   - For macOS/Linux:<br> source venv/bin/activate<br>
+   - For Window:<br> venv\Scripts\activate<br>
+   
+4. Install dependencies:
    pip install -r requirements.txt<br>
    <br>
-   Note: In requirements.txt include pyperclip (clipboard copy support), Pillow (GUI images/icons support)
 
-3. Run the application:
+5. Run the application:
    python3 main.py
 
-
+**Note:** If you want to exit virtual environment:<br> deactivate
 
 # Usage examples
 
+**Decode Base64:**<br>
+- Input: SGVsbG8gd29ybGQh<br>
+- Drag "From Base64" → "RUN RECIPE"<br>
+- Output: Hello world!<br>
+
+**Auto-detect encoding**<br>
+- Input: ;K_$aOB (Base92-encoded "Hello")<br>
+- Drag "Magic"<br>
+- Output: [Base92] Hello
+
+**Hash a string**<br>
+- Input: password123<br>
+- Drag "SHA256" → "RUN RECIPE"<br>
+- Output: ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
+  
 # Dependencies or libraries
 
+- Python standard library — used for the GUI (Tkinter)<br>
+
+- Listed in requirements.txt:<br>
+   base58 — enables Base58 encode/decode operations<br>
+   base45 — enables Base45 encode/decode operations<br>
+   base92 — enables Base92 encode/decode operations<br>
 
 
