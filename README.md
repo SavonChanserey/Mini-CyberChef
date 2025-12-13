@@ -51,7 +51,7 @@ Mini-CyberChef/<br>
 # Installation/setup instructions
 
 1. Clone the Repository:
-   git clone https://github.com/SavonChanserey/Mini-CyberChef.git
+   git clone https://github.com/SavonChanserey/Mini-CyberChef.git<br>
    cd path/to/Mini-CyberChef<br>
 
 2. Create a Virtual Environment
@@ -68,7 +68,7 @@ Mini-CyberChef/<br>
 5. Run the application:
    python3 main.py
 
-**Note:** If you want to exit virtual environment:<br> deactivate
+**Note:** If you want to exit virtual environment: deactivate
 
 # Usage examples
 
