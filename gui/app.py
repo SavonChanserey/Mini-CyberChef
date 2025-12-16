@@ -4,7 +4,6 @@ from tkinter import ttk, scrolledtext, messagebox, filedialog
 from pathlib import Path
 import importlib.util
 
-
 class MiniCyberChefApp:
     def __init__(self, root):
         self.root = root
@@ -24,7 +23,6 @@ class MiniCyberChefApp:
 
     def _load_operations(self):
         # Built-in fallback operations
-
         # Load from operations/ folder
         ops_folder = Path(__file__).parent.parent / "operations"
         if ops_folder.exists():
@@ -46,13 +44,11 @@ class MiniCyberChefApp:
 
         self.filtered_operations = list(self.operations.keys())
 
-
-
     def _setup_ui(self):
         # Configure ttk styles
         style = ttk.Style()
         style.theme_use('clam')
-        
+
         # Main container
         main_container = tk.Frame(self.root, bg="#f5f7fa")
         main_container.pack(fill="both", expand=True, padx=10, pady=10)
@@ -66,21 +62,18 @@ class MiniCyberChefApp:
         title_frame = tk.Frame(sidebar, bg="#1a252f", height=70)
         title_frame.pack(fill="x")
         title_frame.pack_propagate(False)
-        
-        tk.Label(title_frame, text="MINI-CYBERCHEF", font=("Helvetica", 18, "bold"), 
+        tk.Label(title_frame, text="MINI-CYBERCHEF", font=("Helvetica", 18, "bold"),
                 bg="#1a252f", fg="white").pack(pady=20)
 
         # Search Bar
         search_frame = tk.Frame(sidebar, bg="#34495e", padx=15, pady=15)
         search_frame.pack(fill="x")
-        
-        tk.Label(search_frame, text="🔍", font=("Helvetica", 14), 
+        tk.Label(search_frame, text="🔍", font=("Helvetica", 14),
                 bg="#34495e", fg="white").pack(side="left", padx=(0, 10))
-        
         self.search_var = tk.StringVar()
-        search_entry = tk.Entry(search_frame, textvariable=self.search_var, 
-                            font=("Helvetica", 11), bg="white", 
-                            relief="flat", insertbackground="#3498db")
+        search_entry = tk.Entry(search_frame, textvariable=self.search_var,
+                                font=("Helvetica", 11), bg="white",
+                                relief="flat", insertbackground="#3498db")
         search_entry.pack(side="right", fill="x", expand=True, ipady=5)
         search_entry.insert(0, "Search operations...")
         search_entry.bind("<FocusIn>", lambda e: search_entry.delete(0, tk.END) if search_entry.get() == "Search operations..." else None)
@@ -90,8 +83,7 @@ class MiniCyberChefApp:
         ops_header = tk.Frame(sidebar, bg="#1a252f", height=40)
         ops_header.pack(fill="x", pady=(10, 0))
         ops_header.pack_propagate(False)
-        
-        tk.Label(ops_header, text="OPERATIONS", font=("Helvetica", 12, "bold"), 
+        tk.Label(ops_header, text="OPERATIONS", font=("Helvetica", 12, "bold"),
                 bg="#1a252f", fg="white").pack(pady=10)
 
         # Operations List with Scrollbar
@@ -102,11 +94,11 @@ class MiniCyberChefApp:
         ops_canvas = tk.Canvas(ops_container, bg="#2c3e50", highlightthickness=0)
         ops_scroll = ttk.Scrollbar(ops_container, orient="vertical", command=ops_canvas.yview)
         self.ops_frame = tk.Frame(ops_canvas, bg="#2c3e50")
-        
+
         # Configure canvas scrolling
         ops_canvas.create_window((0, 0), window=self.ops_frame, anchor="nw")
         ops_canvas.configure(yscrollcommand=ops_scroll.set)
-        
+
         # Pack the canvas and scrollbar
         ops_canvas.pack(side="left", fill="both", expand=True)
         ops_scroll.pack(side="right", fill="y")
@@ -115,42 +107,39 @@ class MiniCyberChefApp:
         recipe_header = tk.Frame(sidebar, bg="#1a252f", height=40)
         recipe_header.pack(fill="x", pady=(10, 0))
         recipe_header.pack_propagate(False)
-        
-        tk.Label(recipe_header, text="RECIPE", font=("Helvetica", 12, "bold"), 
+        tk.Label(recipe_header, text="RECIPE", font=("Helvetica", 12, "bold"),
                 bg="#1a252f", fg="white").pack(pady=10)
 
         # Recipe Area
         recipe_container = tk.Frame(sidebar, bg="#34495e")
         recipe_container.pack(fill="both", expand=True, padx=15, pady=10)
-
         self.recipe_canvas = tk.Canvas(recipe_container, bg="#34495e", highlightthickness=0)
         recipe_scroll = ttk.Scrollbar(recipe_container, orient="vertical", command=self.recipe_canvas.yview)
         self.recipe_frame = tk.Frame(self.recipe_canvas, bg="#34495e")
-        
         self.recipe_canvas.create_window((0, 0), window=self.recipe_frame, anchor="nw")
         self.recipe_canvas.configure(yscrollcommand=recipe_scroll.set)
-        
         self.recipe_canvas.pack(side="left", fill="both", expand=True)
         recipe_scroll.pack(side="right", fill="y")
 
         # Drop Zone Hint
-        self.drop_hint = tk.Label(self.recipe_frame)
+        self.drop_hint = tk.Label(self.recipe_frame, 
+                                font=("Helvetica", 12), bg="#34495e", fg="#7f8c8d")
         self.drop_hint.pack(expand=True, fill="both", pady=50)
 
         # Control Buttons
         btn_frame = tk.Frame(sidebar, bg="#2c3e50", padx=15, pady=15)
         btn_frame.pack(fill="x")
-        
+
         # Clear Button
         clear_btn = tk.Button(btn_frame, text="🗑️ Clear", font=("Helvetica", 11),
                             bg="#e74c3c", relief="flat", cursor="hand2",
                             command=self._clear_recipe)
         clear_btn.pack(side="left", padx=(0, 10))
-        
+
         # Run Button
         run_btn = tk.Button(btn_frame, text="▶️ RUN", font=("Helvetica", 11, "bold"),
-                        bg="#27ae60",  relief="flat", cursor="hand2",
-                        command=self._run_recipe)
+                            bg="#27ae60", relief="flat", cursor="hand2",
+                            command=self._run_recipe)
         run_btn.pack(side="right", fill="x", expand=True, padx=(10, 0))
 
         # ========== RIGHT PANEL ==========
@@ -159,22 +148,19 @@ class MiniCyberChefApp:
 
         # Input Section
         input_frame = tk.LabelFrame(right_panel, text=" INPUT ", font=("Helvetica", 13, "bold"),
-                                bg="#2c3e50", fg="white", relief="flat", labelanchor="n")
+                                    bg="#2c3e50", fg="white", relief="flat", labelanchor="n")
         input_frame.pack(fill="both", expand=True, padx=5, pady=(0, 10))
 
         # Input Controls
         input_ctrl = tk.Frame(input_frame, bg="#2c3e50", padx=10, pady=10)
         input_ctrl.pack(fill="x")
-        
         tk.Button(input_ctrl, text="📁 Load File", font=("Helvetica", 10),
                 bg="#3498db", relief="flat", cursor="hand2",
                 command=self._load_file).pack(side="left", padx=(0, 10))
-        
         tk.Button(input_ctrl, text="🗑️ Clear", font=("Helvetica", 10),
                 bg="#95a5a6", relief="flat", cursor="hand2",
                 command=lambda: self.input_text.delete("1.0", tk.END)).pack(side="left")
 
-        
         # Input Text Area
         self.input_text = scrolledtext.ScrolledText(input_frame, font=("Consolas", 12),
                                                 wrap=tk.WORD, bg="#f8f9fa",
@@ -189,20 +175,16 @@ class MiniCyberChefApp:
         # Output Controls
         output_ctrl = tk.Frame(output_frame, bg="#2c3e50", padx=10, pady=10)
         output_ctrl.pack(fill="x")
-        
         tk.Button(output_ctrl, text="📋 Copy", font=("Helvetica", 10),
                 bg="black", relief="flat", cursor="hand2",
                 command=self._copy_output).pack(side="left", padx=(0, 10))
-        
         tk.Button(output_ctrl, text="💾 Save", font=("Helvetica", 10),
                 bg="black", relief="flat", cursor="hand2",
                 command=self._save_output).pack(side="left", padx=(0, 10))
-        
         tk.Button(output_ctrl, text="🗑️ Clear", font=("Helvetica", 10),
                 bg="black", relief="flat", cursor="hand2",
                 command=lambda: self.output_text.delete("1.0", tk.END)).pack(side="left")
-        
-        tk.Button(output_ctrl, text="Replace input with output", 
+        tk.Button(output_ctrl, text="Replace input with output",
                 font=("Helvetica", 10),
                 bg="black", relief="flat", cursor="hand2",
                 command=self._replace_input_with_output).pack(side="left", padx=(10,0))
@@ -220,32 +202,94 @@ class MiniCyberChefApp:
         self.ops_frame.bind("<Configure>", lambda e: ops_canvas.configure(scrollregion=ops_canvas.bbox("all")))
         self.recipe_frame.bind("<Configure>", lambda e: self.recipe_canvas.configure(scrollregion=self.recipe_canvas.bbox("all")))
 
+        # =================== MOUSE WHEEL SCROLLING FOR LEFT SIDEBAR ===================
+
+        def on_mousewheel(event, canvas):
+            """Handle mouse wheel scrolling for a given canvas"""
+            scrollregion = canvas.bbox("all")
+            if scrollregion is None:
+                return
+            content_height = scrollregion[3] - scrollregion[1]
+            canvas_height = canvas.winfo_height()
+        
+            if content_height <= canvas_height:
+                return  # Don't scroll if content fits
+        
+            # Windows/Mac: event.delta, Linux: event.num
+            if event.num == 5 or event.delta < 0:
+                canvas.yview_scroll(1, "units")
+            elif event.num == 4 or event.delta > 0:
+                canvas.yview_scroll(-1, "units")
+
+        def bind_mousewheel_to_canvas(canvas):
+            """Bind mouse wheel to canvas, internal frame, and all children (current + future)"""
+            # Bind to canvas itself
+            canvas.bind("<MouseWheel>", lambda e: on_mousewheel(e, canvas))  # Windows/Mac
+            canvas.bind("<Button-4>", lambda e: on_mousewheel(e, canvas))    # Linux up
+            canvas.bind("<Button-5>", lambda e: on_mousewheel(e, canvas))    # Linux down
+        
+            # Get the internal frame
+            frame = canvas.nametowidget(canvas.itemcget(canvas.find_withtag("all")[0], "window"))
+        
+            # Bind to frame
+            frame.bind("<MouseWheel>", lambda e: on_mousewheel(e, canvas))
+            frame.bind("<Button-4>", lambda e: on_mousewheel(e, canvas))
+            frame.bind("<Button-5>", lambda e: on_mousewheel(e, canvas))
+        
+            # Recursively bind to all current children
+            def bind_to_children(parent):
+                for child in parent.winfo_children():
+                    child.bind("<MouseWheel>", lambda e: on_mousewheel(e, canvas))
+                    child.bind("<Button-4>", lambda e: on_mousewheel(e, canvas))
+                    child.bind("<Button-5>", lambda e: on_mousewheel(e, canvas))
+                    if child.winfo_children():
+                        bind_to_children(child)
+        
+            bind_to_children(frame)
+        
+            # Re-bind when new children are added (e.g., new operations or recipe items)
+            frame.bind("<Configure>", lambda e: self.root.after(50, bind_to_children, frame))
+
+        # Apply to both left-side scrollable areas
+        bind_mousewheel_to_canvas(ops_canvas)
+        bind_mousewheel_to_canvas(self.recipe_canvas)
+
+        # Optional: helper functions to manually update scrollregion
+        def update_ops_scrollregion():
+            ops_canvas.configure(scrollregion=ops_canvas.bbox("all"))
+    
+        def update_recipe_scrollregion():
+            self.recipe_canvas.configure(scrollregion=self.recipe_canvas.bbox("all"))
+    
+        self.update_ops_scrollregion = update_ops_scrollregion
+        self.update_recipe_scrollregion = update_recipe_scrollregion
+
+        # Initial update
+        self.root.after(200, update_ops_scrollregion)
+        self.root.after(200, update_recipe_scrollregion)
+
+        # =================== END MOUSE WHEEL SCROLLING ===================
+
     def _populate_operations(self):
         for w in self.ops_frame.winfo_children():
             w.destroy()
-        
         for name in self.filtered_operations:
             desc = self.operations[name]["desc"]
-            
             # Create operation frame
             op_frame = tk.Frame(self.ops_frame, bg="#3d566e", cursor="hand2")
             op_frame.pack(fill="x", pady=2)
-            
             # Operation label
-            op_label = tk.Label(op_frame, text=f"  {name}", font=("Helvetica", 11),
-                            bg="#3d566e", fg="white", anchor="w", padx=10, pady=8)
+            op_label = tk.Label(op_frame, text=f" {name}", font=("Helvetica", 11),
+                                bg="#3d566e", fg="white", anchor="w", padx=10, pady=8)
             op_label.pack(fill="x")
-            
-            # Description label (smaller, lighter) - FIXED PADY PARAMETER
-            desc_label = tk.Label(op_frame, text=f"    {desc}", font=("Helvetica", 9),
+            # Description label (smaller, lighter)
+            desc_label = tk.Label(op_frame, text=f" {desc}", font=("Helvetica", 9),
                                 bg="#3d566e", fg="#bdc3c7", anchor="w", padx=10)
             desc_label.pack(fill="x", pady=(0, 8))
-            
             # Bind events to entire frame and labels
             for widget in [op_frame, op_label, desc_label]:
                 widget.bind("<ButtonPress-1>", lambda e, n=name: self._start_drag(e, n))
                 widget.bind("<ButtonRelease-1>", lambda e, n=name: self._stop_drag(e, n))
-                
                 # Hover effects
                 widget.bind("<Enter>", lambda e, f=op_frame, l=op_label, d=desc_label: self._on_enter(f, l, d))
                 widget.bind("<Leave>", lambda e, f=op_frame, l=op_label, d=desc_label: self._on_leave(f, l, d))
@@ -264,19 +308,16 @@ class MiniCyberChefApp:
         q = self.search_var.get().lower()
         if q == "search operations...":
             q = ""
-        
         if not q:
             self.filtered_operations = list(self.operations.keys())
         else:
             self.filtered_operations = [op for op in self.operations.keys() if q in op.lower()]
-        
         self._populate_operations()
 
     def _setup_drag_drop(self):
         # Bind drop events to recipe canvas and frame
         self.recipe_canvas.bind("<ButtonRelease-1>", self._on_drop)
         self.recipe_frame.bind("<ButtonRelease-1>", self._on_drop)
-        
         # Bind motion for visual feedback
         self.root.bind("<B1-Motion>", self._on_drag_motion)
         self.root.bind("<ButtonRelease-1>", self._stop_drag)
@@ -288,8 +329,7 @@ class MiniCyberChefApp:
 
     def _on_drag_motion(self, event):
         if self.dragging:
-            # Visual feedback could be added here
-            pass
+            pass  # Visual feedback could be added here
 
     def _stop_drag(self, event=None, name=None):
         self.dragging = False
@@ -307,26 +347,24 @@ class MiniCyberChefApp:
         # Hide drop hint if visible
         if self.drop_hint.winfo_ismapped():
             self.drop_hint.pack_forget()
-
         # Create recipe item
         item_frame = tk.Frame(self.recipe_frame, bg="#4a6278", relief="flat", bd=1)
         item_frame.pack(fill="x", pady=4, padx=10, ipady=5)
-
         # Operation name
-        tk.Label(item_frame, text=name, font=("Helvetica", 11, "bold"), 
+        tk.Label(item_frame, text=name, font=("Helvetica", 11, "bold"),
                 bg="#4a6278", fg="white").pack(side="left", padx=15, pady=8)
-
         # Remove button
         remove_btn = tk.Button(item_frame, text="✕", font=("Helvetica", 14),
                             bg="#4a6278", fg="#e74c3c", bd=0, cursor="hand2",
                             command=lambda b=item_frame: self._remove_recipe_item(b))
         remove_btn.pack(side="right", padx=15)
-
         # Store in recipe
         self.recipe.append((name, item_frame))
-        
-        # Auto-scroll to show new item
+        # Auto-scroll to bottom to show new item
         self.recipe_canvas.yview_moveto(1.0)
+        # Update scrollregion
+        if hasattr(self, 'update_recipe_scrollregion'):
+            self.update_recipe_scrollregion()
 
     def _remove_recipe_item(self, item_frame):
         for i, (name, frame) in enumerate(self.recipe):
@@ -334,64 +372,57 @@ class MiniCyberChefApp:
                 frame.destroy()
                 self.recipe.pop(i)
                 break
-        
         # Show drop hint if recipe is empty
         if not self.recipe:
             self.drop_hint.pack(expand=True, fill="both", pady=50)
+        # Update scrollregion
+        if hasattr(self, 'update_recipe_scrollregion'):
+            self.update_recipe_scrollregion()
 
     def _clear_recipe(self):
         if not self.recipe:
             return
-            
         if messagebox.askyesno("Clear Recipe", "Are you sure you want to clear the entire recipe?"):
             for _, frame in self.recipe:
                 frame.destroy()
             self.recipe.clear()
-            
             # Show drop hint
             self.drop_hint.pack(expand=True, fill="both", pady=50)
+            if hasattr(self, 'update_recipe_scrollregion'):
+                self.update_recipe_scrollregion()
 
     def _run_recipe(self):
         # Get input data
         data = self.input_text.get("1.0", tk.END).strip()
-        
         if not data:
             messagebox.showwarning("No Input", "Please enter some data in the input field.")
             return
-            
         if not self.recipe:
             messagebox.showwarning("Empty Recipe", "Please add operations to the recipe.")
             return
-
         # Clear output
         self.output_text.delete("1.0", tk.END)
-        
         # Show processing message
         self.output_text.insert("1.0", "Processing recipe...\n")
         self.root.update()
-        
         result = data
-        
         try:
             # Process each operation in recipe
             for i, (name, _) in enumerate(self.recipe):
                 op_data = self.operations.get(name)
                 if not op_data:
                     raise ValueError(f"Operation '{name}' not found")
-                
                 # Apply operation
                 result = op_data["func"](result)
-                
                 # Update progress in output
                 self.output_text.delete("1.0", tk.END)
                 self.output_text.insert("1.0", str(result))
                 self.root.update()
-                
         except Exception as e:
             # Show error in output
             self.output_text.delete("1.0", tk.END)
-            self.output_text.insert("1.0", f"❌ Error in operation '{name}':\n{str(e)}\n\nCurrent result:\n{result}")
-            
+            self.output_text.insert("1.0", f"Error in operation '{name}':\n{str(e)}\n\nCurrent result:\n{result}")
+
     def _replace_input_with_output(self):
         content = self.output_text.get("1.0", tk.END).strip()
         if content:
@@ -399,26 +430,25 @@ class MiniCyberChefApp:
             self.input_text.insert("1.0", content)
             # Flash green to show success
             self.input_text.config(bg="#d4edda")
-            self.root.after(300, lambda: self.input_text.config(bg="#ffffff"))
-            
+            self.root.after(300, lambda: self.input_text.config(bg="#f8f9fa"))
+
     def _load_file(self):
         file_path = filedialog.askopenfilename(
             title="Select a file",
             filetypes=[("Text files", "*.txt"), ("All files", "*.*")]
         )
-        
         if file_path:
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
-                    self.input_text.delete("1.0", tk.END)
-                    self.input_text.insert("1.0", content)
+                self.input_text.delete("1.0", tk.END)
+                self.input_text.insert("1.0", content)
             except UnicodeDecodeError:
                 try:
                     with open(file_path, 'rb') as f:
                         content = f.read().hex()
-                        self.input_text.delete("1.0", tk.END)
-                        self.input_text.insert("1.0", content)
+                    self.input_text.delete("1.0", tk.END)
+                    self.input_text.insert("1.0", content)
                 except Exception as e:
                     messagebox.showerror("Error", f"Cannot read file: {e}")
             except Exception as e:
@@ -426,17 +456,14 @@ class MiniCyberChefApp:
 
     def _save_output(self):
         content = self.output_text.get("1.0", tk.END).strip()
-        
         if not content:
             messagebox.showwarning("No Output", "There is no output to save.")
             return
-            
         file_path = filedialog.asksaveasfilename(
             title="Save Output",
             defaultextension=".txt",
             filetypes=[("Text files", "*.txt"), ("All files", "*.*")]
         )
-        
         if file_path:
             try:
                 with open(file_path, 'w', encoding='utf-8') as f:
@@ -447,17 +474,15 @@ class MiniCyberChefApp:
 
     def _copy_output(self):
         content = self.output_text.get("1.0", tk.END).strip()
-        
         if content:
             self.root.clipboard_clear()
             self.root.clipboard_append(content)
-            
             # Visual feedback
             original_bg = self.output_text.cget("bg")
             self.output_text.config(bg="#d4edda")
             self.root.after(200, lambda: self.output_text.config(bg=original_bg))
 
-    
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = MiniCyberChefApp(root)
