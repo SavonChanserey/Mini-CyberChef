@@ -38,7 +38,6 @@ Mini-CyberChef/<br>
 │   ├── rot47.py<br>
 │   ├── vigenere_decode.py<br>
 │   ├── vigenere_encode.py<br>
-│   └── xor.py<br>
 │<br>
 │── README.md<br>
 │── requirements.txt<br>
