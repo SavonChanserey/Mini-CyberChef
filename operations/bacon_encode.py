@@ -1,7 +1,10 @@
 BACON = {'A':'AAAAA','B':'AAAAB','C':'AAABA','D':'AAABB','E':'AABAA','F':'AABAB','G':'AABBA','H':'AABBB',
-         'I':'ABAAA','J':'ABAAB','K':'ABABA','L':'ABABB','M':'ABBAA','N':'ABBAB','O':'ABBBA','P':'ABBBB',
-         'Q':'BAAAA','R':'BAAAB','S':'BAABA','T':'BAABB','U':'BABAA','V':'BABAB','W':'BABBA','X':'BABBB',
-         'Y':'BBAAA','Z':'BBAAB'}
+        'I':'ABAAA','J':'ABAAB','K':'ABABA','L':'ABABB','M':'ABBAA','N':'ABBAB','O':'ABBBA','P':'ABBBB',
+        'Q':'BAAAA','R':'BAAAB','S':'BAABA','T':'BAABB','U':'BABAA','V':'BABAB','W':'BABBA','X':'BABBB',
+        'Y':'BBAAA','Z':'BBAAB'}
+
 NAME = "To Bacon"
+
 def run(data: str) -> str:
+    
     return "".join(BACON.get(c.upper(), "") for c in data if c.isalpha())

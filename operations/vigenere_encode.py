@@ -1,7 +1,7 @@
 from tkinter import simpledialog
 import tkinter as tk
 
-NAME = "Vigenère Encode"
+NAME = "To Vigenère"
 
 def run(data: str) -> str:
     root = tk.Tk()

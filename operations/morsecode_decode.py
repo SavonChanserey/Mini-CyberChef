@@ -12,7 +12,7 @@ REVERSE_DICT = {
     '.-..-.': '"', '...-..-': '$', '.--.-.': '@', '/': ' '
 }
 
-NAME = "Morse Decode"
+NAME = "From Morse_Code"
 
 def run(data: str) -> str:
     words = data.strip().split('   ')  # 3 spaces = word break

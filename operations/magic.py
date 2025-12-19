@@ -1,79 +1,79 @@
 # operations/magic.py
-import re
-import string
 from pathlib import Path
 import importlib.util
+import string
 
 NAME = "Magic"
 
-# List of all decode functions we want to try
+# ONLY automatic decoders — NO popups!
 DECODE_OPERATIONS = [
-    # (display_name, module_name, function_name, needs_key?)
-    ("Base64",         "base64_decode",         "run", False),
-    ("Base64URL",      "base64url_decode",      "run", False),
-    ("Base32",         "base32_decode",         "run", False),
-    ("Base58",         "base58_decode",         "run", False),
-    ("Base62",         "base62_decode",         "run", False),
-    ("Base85",         "base85_decode",         "run", False),
-    ("Hex",            "hex_decode",            "run", False),
-    ("Binary",         "binary_decode",         "run", False),
-    ("Bacon",          "bacon_decode",          "run", False),
-    ("ROT13",          "rot13",                 "run", False),
-    ("ROT47",          "rot47",                 "run", False),
-    # Add more later if you want
+    ("Base32",      "base32_decode"),
+    ("Base58",      "base58_decode"),
+    ("Base62",      "base62_decode"),
+    ("Base64",      "base64_decode"),
+    ("Base85",      "base85_decode"),
+    ("Base92",      "base92_decode"),
+    ("Hex",         "hexadecimal_decode"),
+    ("Binary",      "binary_decode"),
+    ("Octal",       "octal_decode"),
+    ("URL",         "url_decode"),
+    ("Morse",       "morsecode_decode"),
+    ("Bacon",       "bacon_decode"),
+    ("ROT13",       "rot13"),
+    ("ROT47",       "rot47"),
 ]
 
-def is_meaningful(text: str) -> bool:
-    """Return True if text looks like real English / flag / code"""
-    if not text:
+def is_good_result(text: str) -> bool:
+    
+    if not text or len(text) < 5:
         return False
-    printable = sum(c in string.printable for c in text) / len(text)
-    if printable < 0.9:
+    
+    if not all(c in string.printable for c in text):
         return False
-    words = re.findall(r'[a-zA-Z]{4,}', text)
-    common = {'the', 'and', 'flag', 'ctf', 'pico', 'hello', 'password', 'secret', 'key', 'crypto'}
-    return any(w.lower() in common for w in words) or len(words) >= 3
+    
+    letters = sum(c.isalpha() for c in text)
+    spaces = text.count(" ") + text.count("\n")
+    return (letters + spaces) >= len(text) * 0.5  # Real text has letters + spaces
 
 def run(data: str) -> str:
-    data = data.strip()
-    if not data:
+    original = data.strip()
+    if not original:
         return "[Empty input]"
 
-    results = []
+    candidates = []
 
-    # Try every decode operation
-    for name, mod_name, func_name, needs_key in DECODE_OPERATIONS:
+    for display_name, module_name in DECODE_OPERATIONS:
         try:
-            # Dynamically import the module
-            path = Path(__file__).parent / f"{mod_name}.py"
-            spec = importlib.util.spec_from_file_location(mod_name, path)
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
+            path = Path(__file__).parent / f"{module_name}.py"
+            if not path.exists():
+                continue
 
-            func = getattr(module, func_name)
-            result = func(data)
+            spec = importlib.util.spec_from_file_location(module_name, path)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
 
-            if result and result not in {"[Invalid", "[No", data}:  # avoid junk
-                if is_meaningful(result):
-                    return f"[{name}] {result}"
+            result = mod.run(original)
 
-                results.append((name, result))
-        except Exception:
-            pass  # silently skip broken ones
+            if not result or result == original:
+                continue
+            if any(err in result for err in ["[Invalid", "[Error", "[No key"]):
+                continue
 
-    # If nothing was clearly meaningful, return best guesses
-    if results:
-        best = max(results, key=lambda x: len(re.findall(r'[a-zA-Z]', x[1])), default=None)
-        if best:
-            return f"[Possible {best[0]}] {best[1]}"
+            # Good result → return immediately
+            if is_good_result(result):
+                return f"[{display_name}] {result}"
 
-    # Try ROT13 even on plaintext (common trick)
-    try:
-        from .rot13 import run as rot13_run
-        rot = rot13_run(data)
-        if is_meaningful(rot):
-            return f"[ROT13] {rot}"
-    except:
-        pass
+            # Save as candidate
+            score = sum(c.isalpha() or c.isspace() for c in result)
+            candidates.append((score, display_name, result))
 
-    return f"[Unknown] Likely raw or new encoding\n\nInput length: {len(data)}\nPreview: {data[:200]}{'...' if len(data)>200 else ''}"
+        except (ValueError, TypeError, OSError) as e:  # Handle expected errors
+            # print(f"Skipping invalid entry: {e}")  # Optional logging
+            continue
+
+    if candidates:
+        candidates.sort(reverse=True)
+        score, name, result = candidates[0]
+        return f"[Possible {name}] {result}"
+
+    return f"[No match]\nTried {len(DECODE_OPERATIONS)} automatic decoders."

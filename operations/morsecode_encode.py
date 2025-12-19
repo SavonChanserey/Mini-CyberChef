@@ -12,7 +12,7 @@ MORSE_CODE_DICT = {
     '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': '/'
 }
 
-NAME = "Morse Encode"
+NAME = "To Morse_Code"
 
 def run(data: str) -> str:
     data = data.upper()
