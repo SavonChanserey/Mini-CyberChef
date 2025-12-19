@@ -38,7 +38,6 @@ Mini-CyberChef/<br>
 │   ├── rot47.py<br>
 │   ├── vigenere_decode.py<br>
 │   ├── vigenere_encode.py<br>
-│   └── xor.py<br>
 │<br>
 │── README.md<br>
 │── requirements.txt<br>
@@ -50,11 +49,11 @@ Mini-CyberChef/<br>
 
 # Installation/setup instructions
 
-1. Clone the Repository:
+1. Clone the Repository:<br>
    git clone https://github.com/SavonChanserey/Mini-CyberChef.git<br>
    cd path/to/Mini-CyberChef<br>
 
-2. Create a Virtual Environment
+2. Create a Virtual Environment:<br>
    python3 -m venv venv<br>
 
 3. Activate the Virtual Environment
