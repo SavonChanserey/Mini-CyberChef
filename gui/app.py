@@ -1,4 +1,3 @@
-# gui/app.py
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox, filedialog
 from pathlib import Path # Help find folders easily
