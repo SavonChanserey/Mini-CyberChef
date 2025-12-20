@@ -97,7 +97,7 @@ To exit virtual environment:
 
 # Usage examples
 
-**Base64:**<br>
+**Base64**<br>
 - Input: SGVsbG8gd29ybGQh<br>
 - Operation: From Base64
 - Output: Hello world!<br>
