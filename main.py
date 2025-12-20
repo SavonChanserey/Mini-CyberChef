@@ -1,23 +1,29 @@
-#!/usr/bin/env python3
-# main.py  ←←←  ONLY RUN THIS FILE
-
-import sys
-from pathlib import Path
-
-# Fix the Python path so imports work perfectly
-PROJECT_ROOT = Path(__file__).parent.absolute()
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-# Optional debug – shows you everything is found (you can delete these two lines later)
-print("Mini-CyberChef started")
-print("Found operations:", [f.stem for f in PROJECT_ROOT.joinpath("operations").glob("*.py") if not f.name.startswith("__")])
-
-# Launch the app
-from gui.app import MiniCyberChefApp
 import tkinter as tk
+from gui.app import MiniCyberChefApp
 
-if __name__ == "__main__":
+def main():
+    print("Mini-CyberChef starting...")
+    
     root = tk.Tk()
     app = MiniCyberChefApp(root)
+    
+    # Center the window on screen
+    root.update_idletasks()
+    width = root.winfo_width()
+    height = root.winfo_height()
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    
+    x = (screen_width // 2) - (width // 2)
+    y = (screen_height // 2) - (height // 2)
+    
+    root.geometry(f'{width}x{height}+{x}+{y}')
+    
+    # Make window resizable
+    root.minsize(1200, 700)
+    
+    print("Mini-CyberChef ready!")
     root.mainloop()
+
+if __name__ == "__main__":
+    main()
