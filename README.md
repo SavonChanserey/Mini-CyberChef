@@ -90,34 +90,52 @@ Mini-CyberChef/<br>
    - pip install -r requirements.txt<br>
    
 5. Run the application:
-   - python3 main.py
+   - python3 main.py<br>
 
-**Note:** If you want to exit virtual environment: deactivate
+To exit virtual environment: 
+   - deactivate<br>
 
 # Usage examples
 
-**Decode Base64:**<br>
+**Base64:**<br>
 - Input: SGVsbG8gd29ybGQh<br>
-- Drag "From Base64" → "RUN RECIPE"<br>
+- Operation: From Base64
 - Output: Hello world!<br>
 
 **Auto-detect encoding**<br>
-- Input: ;K_$aOB (Base92-encoded "Hello")<br>
-- Drag "Magic"<br>
+- Input: ;K_$aOB<br>
+- Operation: Magic<br>
 - Output: [Base92] Hello
 
-**Hash a string**<br>
+**Hashing**<br>
 - Input: password123<br>
-- Drag "SHA256" → "RUN RECIPE"<br>
-- Output: ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
-  
+- Drag "MD5" → "RUN RECIPE"<br>
+- Output: 42f749ade7f9e195bf475f37a44cafcb
+
+**Binary**<br>
+- Loaf file: flag.txt (it contains some binary)<br>
+- Operation: From Binary<br>
+- Output: CTF{First_Flag}
+
 # Dependencies or libraries
 
-- Python standard library — used for the GUI (Tkinter)<br>
+-Python Standard Libraries:<br>
+   + Tkinter: Used to Create Graphical User Interface<br>
+   + base64: base32, base64, base85 encoding and decoding<br>
+   + binascii: Hexadecimal and binary conversions<br>
+   + hashlib: Cryptographic hash functions<br>
+   + re: Pattern matching for extraction features<br>
+   + html: HTML entity encoding and decoding<br>
+   + zlib: CRC32 checksum<br>
 
-- Listed in requirements.txt:<br>
+- External Libraries:<br>
    + base58: enables Base58 encode/decode operations<br>
    + base45: enables Base45 encode/decode operations<br>
    + base92: enables Base92 encode/decode operations<br>
+
+- In requirements.txt:<br>
+  + base58<br>
+  + base92<br>
+  + base45<br>
 
 
