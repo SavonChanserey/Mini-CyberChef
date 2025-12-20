@@ -4,8 +4,7 @@ NAME = "To Base92"
 
 def run(data: str) -> str:
     try:
-        bytes_data = data.encode('utf-8')
-        encoded = base92.b92encode(bytes_data)
-        return encoded.decode('ascii')  # Clean ASCII output
+        encoded_bytes = base92.encode(data.encode('utf-8'))
+        return encoded_bytes.decode('ascii')  
     except Exception as e:
-        return f"[Base92 Encode Error] {e}"
+        return f"[Encode Error: {str(e)}]"

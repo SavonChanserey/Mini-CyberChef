@@ -6,5 +6,4 @@ BACON = {'A':'AAAAA','B':'AAAAB','C':'AAABA','D':'AAABB','E':'AABAA','F':'AABAB'
 NAME = "To Bacon"
 
 def run(data: str) -> str:
-    
     return "".join(BACON.get(c.upper(), "") for c in data if c.isalpha())

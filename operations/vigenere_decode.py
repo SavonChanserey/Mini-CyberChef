@@ -4,7 +4,6 @@ import tkinter as tk
 NAME = "From Vigenère"
 
 def run(data: str) -> str:
-    
     root = tk.Tk()
     root.withdraw()
     key = simpledialog.askstring("Vigenère Decode", "Enter key:")

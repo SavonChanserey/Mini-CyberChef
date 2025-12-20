@@ -1,5 +1,4 @@
-# operations/base62_decode.py
-NAME = "Base62 Decode"
+NAME = "From Base62"
 
 TABLE = {c: i for i, c in enumerate("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}
 

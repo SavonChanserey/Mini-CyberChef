@@ -1,5 +1,4 @@
-# operations/base62_encode.py
-NAME = "Base62 Encode"
+NAME = "To Base62"
 
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 

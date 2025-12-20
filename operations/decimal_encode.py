@@ -1,4 +1,3 @@
-# operations/to_decimal.py
 NAME = "To Decimal"
 
 def run(data: str) -> str:
