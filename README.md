@@ -119,7 +119,7 @@ To exit virtual environment:
 
 # Dependencies or libraries
 
--Python Standard Libraries:<br>
+- Python Standard Libraries:<br>
    + Tkinter: Used to Create Graphical User Interface<br>
    + base64: base32, base64, base85 encoding and decoding<br>
    + binascii: Hexadecimal and binary conversions<br>
