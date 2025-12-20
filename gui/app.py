@@ -158,14 +158,11 @@ class MiniCyberChefApp:
         self.output_text = scrolledtext.ScrolledText(output_frame, font=("Consolas", 12),wrap=tk.WORD, bg="#f8f9fa",relief="flat", borderwidth=1)
         self.output_text.pack(fill="both", expand=True, padx=10, pady=(0, 10))
         self._populate_operations()
-
         self.ops_frame.bind("<Configure>", lambda e: ops_canvas.configure(scrollregion=ops_canvas.bbox("all")))
         self.recipe_frame.bind("<Configure>", lambda e: self.recipe_canvas.configure(scrollregion=self.recipe_canvas.bbox("all")))
 
         # =================== MOUSE WHEEL SCROLLING FOR LEFT SIDEBAR ===================
-
         def on_mousewheel(event, canvas):
-            
             scrollregion = canvas.bbox("all")
             if scrollregion is None:
                 return
@@ -179,7 +176,6 @@ class MiniCyberChefApp:
                 canvas.yview_scroll(-1, "units")
 
         def bind_mousewheel_to_canvas(canvas):
-            
             canvas.bind("<MouseWheel>", lambda e: on_mousewheel(e, canvas))
             canvas.bind("<Button-4>", lambda e: on_mousewheel(e, canvas))
             canvas.bind("<Button-5>", lambda e: on_mousewheel(e, canvas))
@@ -218,7 +214,6 @@ class MiniCyberChefApp:
 
     # Populate the list of available operations
     def _populate_operations(self):
-        
         for w in self.ops_frame.winfo_children():
             w.destroy()
         for name in self.filtered_operations:
@@ -237,20 +232,17 @@ class MiniCyberChefApp:
 
     # Hover effects for operation cards
     def _on_enter(self, frame, label, desc_label):
-
         frame.config(bg="#4a6278")
         label.config(bg="#4a6278")
         desc_label.config(bg="#4a6278")
 
     def _on_leave(self, frame, label, desc_label):
-        
         frame.config(bg="#3d566e")
         label.config(bg="#3d566e")
         desc_label.config(bg="#3d566e")
 
     # Search filter for operations
     def _filter_ops(self):
-        
         q = self.search_var.get().lower()
         if q == "search operations...":
             q = ""
@@ -262,7 +254,6 @@ class MiniCyberChefApp:
 
     # Drag & Drop setup
     def _setup_drag_drop(self):
-        
         self.recipe_canvas.bind("<ButtonRelease-1>", self._on_drop)
         self.recipe_frame.bind("<ButtonRelease-1>", self._on_drop)
         self.root.bind("<B1-Motion>", self._on_drag_motion)
@@ -270,23 +261,19 @@ class MiniCyberChefApp:
 
     # Drag & Drop functions
     def _start_drag(self, event, name):
-        
         self.drag_data = {"name": name, "x": event.x_root, "y": event.y_root}
         self.dragging = True
         self.root.config(cursor="hand2")
 
     def _on_drag_motion(self, event):
-        
         if self.dragging:
             pass
 
     def _stop_drag(self, event=None, name=None):
-        
         self.dragging = False
         self.root.config(cursor="")
 
     def _on_drop(self, event):
-        
         if self.drag_data and "name" in self.drag_data:
             op_name = self.drag_data["name"]
             self._add_to_recipe(op_name)
@@ -296,7 +283,6 @@ class MiniCyberChefApp:
 
     # Add operation to recipe
     def _add_to_recipe(self, name):
-        
         if self.drop_hint.winfo_ismapped():
             self.drop_hint.pack_forget()
         item_frame = tk.Frame(self.recipe_frame, bg="#4a6278", relief="flat", bd=1)
@@ -314,7 +300,6 @@ class MiniCyberChefApp:
 
     # Remove operation from recipe
     def _remove_recipe_item(self, item_frame):
-        
         for i, (name, frame) in enumerate(self.recipe):
             if frame == item_frame:
                 frame.destroy()
@@ -330,7 +315,6 @@ class MiniCyberChefApp:
 
     # Clear entire recipe
     def _clear_recipe(self):
-        
         if not self.recipe:
             return
         if messagebox.askyesno("Clear Recipe", "Are you sure you want to clear the entire recipe?"):
@@ -346,7 +330,6 @@ class MiniCyberChefApp:
 
     # Run the full recipe (core processing)
     def _run_recipe(self):
-        
         data = self.input_text.get("1.0", tk.END).strip()
         if not data and self.recipe:  # Only warn if there's a recipe but no input
             self.output_text.delete("1.0", tk.END)
@@ -375,7 +358,6 @@ class MiniCyberChefApp:
 
     # Replace input with current output
     def _replace_input_with_output(self):
-        
         content = self.output_text.get("1.0", tk.END).strip()
         if content:
             self.input_text.delete("1.0", tk.END)
@@ -387,7 +369,6 @@ class MiniCyberChefApp:
 
     # Load file into input
     def _load_file(self):
-        
         file_path = filedialog.askopenfilename(
             title="Select a file",
             filetypes=[("Text files", "*.txt"), ("All files", "*.*")]
@@ -413,7 +394,6 @@ class MiniCyberChefApp:
 
     # Save output to file
     def _save_output(self):
-        
         content = self.output_text.get("1.0", tk.END).strip()
         if not content:
             messagebox.showwarning("No Output", "There is no output to save.")
@@ -433,7 +413,6 @@ class MiniCyberChefApp:
 
     # Copy text from input or output
     def _copy_text(self, text_widget):
-        
         content = text_widget.get("1.0", tk.END).strip()
         if content:
             self.root.clipboard_clear()
