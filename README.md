@@ -102,14 +102,14 @@ To exit virtual environment:
 - Operation: From Base64
 - Output: Hello world!<br>
 
-**Auto-detect encoding**<br>
+**Magic**<br>
 - Input: ;K_$aOB<br>
 - Operation: Magic<br>
 - Output: [Base92] Hello
 
 **Hashing**<br>
 - Input: password123<br>
-- Drag "MD5" → "RUN RECIPE"<br>
+- Operation: MD5<br>
 - Output: 42f749ade7f9e195bf475f37a44cafcb
 
 **Binary**<br>
